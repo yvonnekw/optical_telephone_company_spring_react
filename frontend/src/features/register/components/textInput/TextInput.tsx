@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect} from 'react'
+import React, { useState } from 'react'
 
 interface TextInputProps {
     name: string
@@ -11,6 +11,7 @@ interface TextInputProps {
 }
 
 export const TextInput:React.FC<TextInputProps> = ({name, label, errorMessage, onChange, maxLength, validator}) => {
+  // eslint-disable-next-line
   const [inputValue, setInputValue] = useState<String>("");
 
   const updateInput = (e:React.ChangeEvent<HTMLInputElement>) => {
