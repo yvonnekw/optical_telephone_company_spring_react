@@ -1,5 +1,8 @@
 package com.otcompany.models;
 
+import org.springframework.data.elasticsearch.annotations.Document;
+
+@Document(indexName ="user")
 public class RegistrationDTO {
 
     private String username;

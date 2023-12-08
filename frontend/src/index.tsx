@@ -1,10 +1,10 @@
 
 import React from 'react'
-import ReactDOM from 'react-dom';
-
+import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
+import { store } from './redux/Store';
 import { App } from './App';
 import './assets/global.css';
-
 
 
 //@ts-ignore
@@ -13,7 +13,9 @@ const root = ReactDOM.createRoot (
 )
 
 root.render(
-    <React.StrictMode>
-        <App />
-    </React.StrictMode>
+    <Provider store={store}>
+        <React.StrictMode>
+            <App />
+        </React.StrictMode>
+    </Provider>
 )

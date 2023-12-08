@@ -1,8 +1,8 @@
 
 import React, {useState, useEffect} from 'react'
 import './RegisterFormOne.css';
-//import { TextInput } from '../textInput/TextInput';
-import { ValidatedInput } from '../validDatedInput/ValidatedInput';
+import { validateName } from '../../../../services/Validators';
+import { ValidatedInput } from '../validatedInput/ValidatedInput';
 
 
 interface FormOneState {
@@ -32,15 +32,15 @@ export const RegisterFormOne:React.FC = () => {
   return (
     <div className="reg-step-one-container" data-testId ="reg-step-one-container">
         <div className="reg-step-one-content">
-            <ValidatedInput name={"firstName"} label={"first"}
+            <ValidatedInput name={"firstName"} label={"first Name"}
             errorMessage={"What's your first name?"}
             changeValue={updateUser}
-            validator={()=> true}
+            validator={validateName} 
             />
-            <ValidatedInput name={"lastName"} label={"last"}
+            <ValidatedInput name={"lastName"} label={"last Name"}
             errorMessage={"What's your last name?"}
             changeValue={updateUser}
-            validator={()=> true}
+            validator={validateName} 
             />
             <ValidatedInput name={"email"} label={"email"}
             errorMessage={"Please, enter a valid email."}
