@@ -3,19 +3,23 @@ import { useState, useEffect } from 'react';
 import { ValidatedTextInput } from '../validatedInput/ValidatedTextInput';
 import { useDispatch} from 'react-redux'
 import { AppDispatch } from '../../../../redux/Store';
-import { updateRegister } from '../../../../redux/Slices/RegisterSlices';
+import { updateRegister } from '../../../../redux/slices/RegisterSlices';
 import { validateName } from '../../../../services/Validators';
+import './RegisterNameInput.css'
 
-
-export const RegisterNameInputs:React.FC = () => {
+interface RegisterNameInputProps {
+    firstName: string;
+    lastName: string;
+}
+export const RegisterNameInputs:React.FC<RegisterNameInputProps> = ({firstName, lastName}) => {
 
     const [firstValid, setFirstValid] = useState<boolean>(true);
     const [lastValid, setLastValid] = useState<boolean>(true);
-
     const dispatch:AppDispatch = useDispatch();
 
     const updateName = (e:React.ChangeEvent<HTMLInputElement>):void => {
         if(e.target.name === 'firstName'){
+
             dispatch(updateRegister({name:e.target.name, value:e.target.value}));
 
             let valid = validateName(e.target.value);
@@ -37,8 +41,14 @@ export const RegisterNameInputs:React.FC = () => {
     return (
 
         <div className="register-name-input">
-            <ValidatedTextInput valid={firstValid} name={"firstName"} label={"First name"} changeValue={updateName}/>
-            <ValidatedTextInput valid={lastValid} name={"lastName"} label={"Last name"} changeValue={updateName}/>
+            <div className="register-name-content">
+                <ValidatedTextInput valid={firstValid} name={"firstName"} label={"First name"} changeValue={updateName} data={firstName}/>
+                {firstValid ? <></> : <span className="register-name-error"> what's your first name?</span>}
+            </div>
+            <div className="register-name-content">
+                <ValidatedTextInput valid={lastValid} name={"lastName"} label={"Last name"} changeValue={updateName} data={lastName}/>
+                {lastValid ? <></> : <span className="register-name-error"> what's your last name?</span>}
+            </div>
         </div>
     )
 }

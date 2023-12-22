@@ -1,8 +1,10 @@
 
 import { useState, useEffect } from 'react';
 import React from 'react';
-import { StyledInputBox } from './StyledInput';
-import { determineValidatedSelectStyle } from '../../utils/DetermineStylesUtil'
+import { StyledInputBox, StyledInputLabel } from './StyledInput';
+import { determineValidatedSelectStyle } from '../../utils/DetermineStylesUtil';
+import './ValidatedInput.css';
+import { ExpandMoreRounded } from '@mui/icons-material';
 
 interface ValidateDateSelectorProps{
     style:string;
@@ -10,10 +12,11 @@ interface ValidateDateSelectorProps{
     name:string
     dropDown():JSX.Element[],
     dispatcher(name:string, value:string|number|boolean):void;
+    data?:number;
 
 }
 
-export const ValidatedDateSelector:React.FC<ValidateDateSelectorProps> = ({style, valid, name, dropDown, dispatcher}) => {
+export const ValidatedDateSelector:React.FC<ValidateDateSelectorProps> = ({data, style, valid, name, dropDown, dispatcher}) => {
     
     const [active, setActive] = useState<boolean>(false);
     const [value, setValue] = useState<number>(0);
@@ -35,12 +38,20 @@ export const ValidatedDateSelector:React.FC<ValidateDateSelectorProps> = ({style
         setColour(determineValidatedSelectStyle(active, valid))
     }, [active, valid, value])
     return (
-        <div className={style}>
+        <div className='validated-input'>
             <StyledInputBox active={active} valid={valid}>
-                <StyledInputBox color={color} active={true} valid={valid}>
+                <StyledInputLabel color={color} active={true} valid={valid}>
                     {name}
-                </StyledInputBox>
-                <select onChange={changeValue} onFocus={toggleActive} onBlur={toggleActive}>
+                    <ExpandMoreRounded sx={{
+                        fontSize: 34,
+                        color: active ? '#1DA1F2' : '#657786',
+                        position: 'absolute',
+                        right: '15pix',
+                        top: '35%'
+                    }}
+                    />
+                </StyledInputLabel>
+                <select className="validated-input-value validated-date-selector" onChange={changeValue} onFocus={toggleActive} onBlur={toggleActive} value={data}>
                     {dropDown()}
                 </select>
             </StyledInputBox>
