@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector} from 'react-redux';
-import { ValidatedDateSelector } from '../validatedInput/ValidatedDateSelector';
+import { ValidatedDateSelector } from '../../../../components/validatedInput/ValidatedDateSelector';
 import { getMonths, getDays, getYears } from '../../utils/DateUtils'
 import { AppDispatch, RootState } from '../../../../redux/Store';
 import { updateRegister } from '../../../../redux/slices/RegisterSlices';

@@ -4,8 +4,8 @@ import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../../../redux/Store';
 import { updateRegister } from '../../../../redux/slices/RegisterSlices';
 import { validateEmail } from '../../../../services/Validators'
-import { ValidatedTextInput } from '../validatedInput/ValidatedTextInput';
-import { ValidatedInput } from '../validatedInput/ValidatedInput';
+import { ValidatedTextInput } from '../../../../components/validatedInput/ValidatedTextInput';
+import { ValidatedInput } from '../../../../components/validatedInput/ValidatedInput';
 import './RegisterEmailInput.css'
 
 interface RegisterEmailInputProps {
@@ -33,7 +33,16 @@ export const RegisterEmailInput:React.FC<RegisterEmailInputProps> = ({email}) =>
     }
     return (
         <div className="register-email-input">
-            <ValidatedTextInput data={email} valid={validEmail} label={"email"} name={"email"} changeValue={updateEmail}/>
+            <ValidatedTextInput 
+            data={email} 
+            valid={validEmail} 
+            label={"email"} 
+            name={"email"} 
+            changeValue={updateEmail}
+            attributes={{
+                maxLength: 50
+            }}
+            />
             {validEmail? <></> : <span className="register-email-error">Please enter a valid email.</span>}
         </div>
      

@@ -5,7 +5,7 @@ import { RootState, AppDispatch } from '../../../../redux/Store'
 import { incrementStep } from '../../../../redux/slices/RegisterSlices';
 import './RegisterFormOne.css';
 import { validateName } from '../../../../services/Validators';
-import { ValidatedInput } from '../validatedInput/ValidatedInput';
+import { ValidatedInput } from '../../../../components/validatedInput/ValidatedInput';
 import { RegisterDateInput } from '../registerDateInput/RegisterDateInput';
 import { RegisterNameInputs } from '../registerNameInput/RegisterNameInputs';
 import { RegisterEmailInput } from '../registerEmailInput/RegisterEmailInput';
